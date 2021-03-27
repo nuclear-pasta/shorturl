@@ -1,11 +1,14 @@
 class ShortUrlsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:show]
     def show
-      @link = ShortUrl.find_by_slug(params[:slug])
-      render 'errors/404', status: 404 if @link.nil?
+      @link = ShortUrl.find_by(slug: params[:slug])
       @link.visits +=1
       @link.save
       redirect_to @link.original_url
+    end
+
+    def index
+      @urls = current_user.short_urls
     end
 
 end
