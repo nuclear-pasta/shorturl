@@ -1,16 +1,16 @@
 <h1> URL Shortner </h1>
 <%if current_user %>
-<%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-<%= link_to "My Short Urls", short_urls_path %>
-<%= link_to "New Short Url", new_short_url_path %>
+<%= link_to "Logout", destroy_user_session_path%> <br>
+<%= link_to "My Short Urls", short_urls_path %> <br>
+<%= link_to "New Short Url", new_short_url_path %> <br>
 
 <%else%>
 <%= link_to(
       'Login',
-      new_user_registration_path
-    ) %>
+      new_user_session_path
+    ) %> <br>
 <%= link_to(
     'Sign Up',
     new_user_registration_path
-    ) %>
+    ) %> <br>
 <%end%>
