@@ -13,11 +13,13 @@
 ActiveRecord::Schema.define(version: 2021_03_27_122743) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "short_urls", force: :cascade do |t|
+  create_table "short_urls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "original_url"
     t.string "slug"
+    t.string "description"
     t.integer "visits", default: 0
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -25,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_03_27_122743) do
     t.index ["user_id"], name: "index_short_urls_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

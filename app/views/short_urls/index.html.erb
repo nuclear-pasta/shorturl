@@ -1,0 +1,4 @@
+<h1> Your Short Urls </h1>
+<% @urls.each do |url|%>
+    <li><%=link_to url.description, short_path(slug: url.slug)  %> Used <%=url.visits%> Times </li>
+<% end %>

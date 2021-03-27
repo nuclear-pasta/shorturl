@@ -1,0 +1,10 @@
+<% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+<%= form_for @short_url do |f| %>
+    Link to shorten name: <%= f.text_field :original_url %><br />
+    Description : <%= f.text_field :description %><br />
+    <%= f.submit %>
+<% end %>

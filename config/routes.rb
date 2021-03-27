@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :short_urls, path: 'my-urls', only: [:new, :create, :index]
   get '/s/:slug', to: 'short_urls#show', as: :short
-  get '/my-urls', to: 'short_urls#index'
+
+
   root to: 'homepage#index'
 
 
