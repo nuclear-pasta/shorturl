@@ -6,7 +6,6 @@ class ShortUrlsController < ApplicationController
 
     def create
       @short_url = current_user.short_urls.new(required_param)
-      byebug
       @short_url.add_random_slug
       if @short_url.save
         redirect_to short_urls_path
