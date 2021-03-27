@@ -16,6 +16,7 @@ class ShortUrlsController < ApplicationController
 
     def show
       @link = ShortUrl.find_by(slug: params[:slug])
+      return render '404.html.erb' if @link.nil?
       @link.visits +=1
       @link.save
       redirect_to @link.original_url
