@@ -1,5 +1,6 @@
 class ShortUrl < ApplicationRecord
     belongs_to :user, optional: true
+    has_many :visits
     validates_presence_of :original_url, :slug
     validates :original_url, format: URI::regexp(%w[http https])
     validates_uniqueness_of :slug

@@ -1,4 +1,11 @@
 <h1> Your Short Urls </h1>
+<ul>
 <% @urls.each do |url|%>
-    <li><%=link_to url.description, short_path(slug: url.slug)  %> Used <%=url.visits%> Times </li>
+    <li><%=link_to url.description, short_path(slug: url.slug)  %> Used <%=url.visits.count%> Times </li>
+    <ul>
+    <% url.visits.group_by{|v| v.created_at.strftime("%m/%d/%Y") }.each do |date, visits| %>
+        <li>Day: <%= date.to_s%>, visits:<%=visits.count%>  </li>
+    <%end%>
+    </ul>
 <% end %>
+</ul>

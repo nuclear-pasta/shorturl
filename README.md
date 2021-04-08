@@ -5,4 +5,4 @@ In order to run the project please run the following commands :
 
 In order to run tests: `rspec spec`
 The coding challenge has been using Devise for managing authentication, and its generated views.
-UI has been left minimnal on purpose, as I believe is not part of the evaluation.
+UI has been left minimal on purpose, as I believe is not part of the evaluation.

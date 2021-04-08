@@ -11,7 +11,6 @@ describe ShortUrlsController, type: :controller do
     get(:show, params: { slug: 'example' })
     response.status.should be(302)
     response.should redirect_to 'https://guides.rubyonrails.org/'
-
   end
   it 'user gets redirected if not authenticated when visiting action: new' do
     get :new
@@ -30,5 +29,10 @@ describe ShortUrlsController, type: :controller do
     sign_in @user
     get :index
     response.status.should be(200)
+  end
+  it 'increases the number of visits when the user uses the short url' do
+    sign_in @user
+    get :show, params: { slug: @short_url.slug }
+    expect(@short_url.visits.count).to eq(1)
   end
 end

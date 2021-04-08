@@ -15,15 +15,15 @@ class ShortUrlsController < ApplicationController
     end
 
     def show
-      @link = ShortUrl.find_by(slug: params[:slug])
-      return render '404.html.erb' if @link.nil?
-      @link.visits +=1
-      @link.save
-      redirect_to @link.original_url
+      link = ShortUrl.find_by(slug: params[:slug])
+      return render '404.html.erb' if link.nil?
+      link.visits.create()
+      redirect_to link.original_url
     end
 
     def index
       @urls = current_user.short_urls
+      # byebug
     end
 
     def required_param
